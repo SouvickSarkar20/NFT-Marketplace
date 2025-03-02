@@ -1,6 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-ethers");
 const fs = require('fs');
+require("dotenv").config();
 // const infuraId = fs.readFileSync(".infuraid").toString().trim() || "";
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
@@ -14,13 +15,12 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 module.exports = {
   defaultNetwork: "hardhat",
   networks: {
-    hardhat: {
-      chainId: 1337
+    fuji: {
+      url: "https://api.avax-test.network/ext/bc/C/rpc", // Fuji C-Chain RPC URL
+      accounts: [process.env.PRIVATE_KEY], // Use your wallet's private key
+      chainId: 43113, // Chain ID for Fuji testnet
+       // Optional: Set gas price
     },
-    goerli: {
-      url: "<YOUR_ALCHEMY_URL>",
-      accounts: [ "<YOUR_PRIVATE_KEY>" ]
-    }
   },
   solidity: {
     version: "0.8.4",

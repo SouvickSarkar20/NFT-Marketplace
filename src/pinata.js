@@ -1,6 +1,6 @@
-//require('dotenv').config();
-const key = process.env.REACT_APP_PINATA_KEY;
-const secret = process.env.REACT_APP_PINATA_SECRET;
+require('dotenv').config();
+const key = process.env.API_KEY;
+const secret = process.env.API_SECRET;
 
 const axios = require('axios');
 const FormData = require('form-data');
@@ -18,6 +18,9 @@ export const uploadJSONToIPFS = async(JSONBody) => {
         .then(function (response) {
            return {
                success: true,
+               //pinata response will have a ipfshash that is CID for the file...which is the publicly available url to ur uploaded file 
+               //IPFs is decentralized so we need a gateway to bridge the gap between the http and decentralized web and this gateway is provided by pinata 
+               //gateway will fetch the file from ipfs and serve it to the http web bcoz not all webs support ipfs 
                pinataURL: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
            };
         })
