@@ -1,11 +1,15 @@
 require('dotenv').config();
-const key = process.env.API_KEY;
-const secret = process.env.API_SECRET;
+const key = "99d12b0117d3ff883cc5"
+const secret = "8e4a177bd9f86208d32d67042ecf1dc748504fc98ee472c0c4a3e8d4a1ff550c";
 
 const axios = require('axios');
 const FormData = require('form-data');
 
 export const uploadJSONToIPFS = async(JSONBody) => {
+    console.log("inside the uploadjson function");
+    console.log("API Key:", key); // Added debugging line
+    console.log("API Secret:", secret); 
+    
     const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
     //making axios POST request to Pinata ⬇️
     return axios 
